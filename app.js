@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const https = require('https');
-
+const API = require('./secret')
 const app = express();
 
 app.use(express.static('public'));
@@ -35,7 +35,7 @@ app.post('/', (req, res) => {
   const url = "https://us1.api.mailchimp.com/3.0/lists/74cdb32956";
   const options = {
     method: 'POST',
-    auth: "aman:29737bbdcf9548b4c300162074041b3a-us1"
+    auth: `aman:${API.API_KEY}`
   }
 
   const request = https.request(url, options, (response) => {
@@ -61,7 +61,3 @@ app.post('/failure', (req, res)=>{
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server running at port 3000");
 })
-
-
-//29737bbdcf9548b4c300162074041b3a-us1
-//
